@@ -3,38 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>SVG Drawing Tool</title>
-  <style>
-    svg { border: 1px solid black; cursor: crosshair; }
-  </style>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="mouseDrawing.css">
 </head>
 <body>
+    <header>
+      <nav>
+          <h2>Experiment 2</h2>
+          <ul>
+              <li><a href="/index.html" target="_blank" >Experiment 2.1</a></li>
+              <li><a href="/productFilter.html" target="_blank">Experiment 2.2</a></li>
+              <li><a href="/mouseDrawing.html" target="_blank">Experiment 2.3</a></li>
+          </ul>
+      </nav>
+  </header>
   <svg id="drawingArea" width="500" height="400"></svg>
-
-  <script>
-    const drawingBoard=document.getElementById('drawingArea');
-    let currentPath;
-    let isDrawing = false;
-
-    drawingBoard.addEventListener('mousedown', (e)=>{
-      isDrawing = true;
-      currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      currentPath.setAttribute('stroke', 'blue');
-      currentPath.setAttribute('fill', 'none');
-      currentPath.setAttribute('stroke-width', '2');
-      currentPath.setAttribute('d', `M ${e.offsetX}, ${e.offsetY}`);
-      drawingBoard.appendChild(currentPath);
-      console.log(drawingBoard);
-    });
-
-    drawingBoard.addEventListener('mousemove', (e)=>{
-      if(!isDrawing) return;
-      const dimension = currentPath.getAttribute("d");
-      currentPath.setAttribute("d", `${dimension} L${e.offsetX},${e.offsetY}`);
-    });
-
-    drawingBoard.addEventListener('mouseup', (e)=>{
-      isDrawing = false;
-    });
-  </script>
 </body>
+<script src="mouseDrawing.js"></script>
 </html>

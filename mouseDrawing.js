@@ -1,23 +1,24 @@
-const svg = document.getElementById("drawingArea");
-let isDrawing = false;
+const drawingBoard=document.getElementById('drawingArea');
 let currentPath;
+let isDrawing = false;
 
-svg.addEventListener("mousedown", (e) => {
+drawingBoard.addEventListener('mousedown', (e)=>{
     isDrawing = true;
-    currentPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    currentPath.setAttribute("stroke", "black");
-    currentPath.setAttribute("fill", "none");
-    currentPath.setAttribute("stroke-width", "2");
-    currentPath.setAttribute("d", `M${e.offsetX},${e.offsetY}`);
-    svg.appendChild(currentPath);
+    currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    currentPath.setAttribute('stroke', 'blue');
+    currentPath.setAttribute('fill', 'none');
+    currentPath.setAttribute('stroke-width', '2');
+    currentPath.setAttribute('d', `M ${e.offsetX}, ${e.offsetY}`);
+    drawingBoard.appendChild(currentPath);
+    console.log(drawingBoard);
 });
 
-svg.addEventListener("mousemove", (e) => {
-    if (!isDrawing) return;
-    const d = currentPath.getAttribute("d");
-    currentPath.setAttribute("d", `${d} L${e.offsetX},${e.offsetY}`);
+drawingBoard.addEventListener('mousemove', (e)=>{
+    if(!isDrawing) return;
+    const dimension = currentPath.getAttribute("d");
+    currentPath.setAttribute("d", `${dimension} L${e.offsetX},${e.offsetY}`);
 });
 
-svg.addEventListener("mouseup", () => {
+drawingBoard.addEventListener('mouseup', (e)=>{
     isDrawing = false;
 });
